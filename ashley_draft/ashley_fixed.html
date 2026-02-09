@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be Mine? 💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffeef0 0%, #fff0f5 30%, #ffe4e6 60%, #ffd1dc 100%);
+            min-height: 100vh;
+            max-width: 393px;
+            margin: 0 auto;
+            overflow-x: hidden;
+            position: relative;
+            background-attachment: fixed;
+        }
+        
+        /* Enhanced background pattern */
+        .background-tulips {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.08;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255,182,193,0.3) 15px, transparent 16px),
+                radial-gradient(circle at 75% 25%, rgba(255,105,180,0.2) 10px, transparent 11px),
+                radial-gradient(circle at 50% 50%, rgba(255,192,203,0.25) 12px, transparent 13px),
+                radial-gradient(circle at 25% 75%, rgba(255,20,147,0.2) 8px, transparent 9px),
+                radial-gradient(circle at 75% 75%, rgba(255,182,193,0.3) 14px, transparent 15px);
+            background-size: 120px 120px, 140px 140px, 100px 100px, 130px 130px, 110px 110px;
+            animation: backgroundFloat 25s infinite ease-in-out;
+        }
+        
+        .background-tulips::before {
+            content: '🌷 🤍 🌸 💕 🌹 🌷 🤍 🌸 💕 🌹 🌷 🤍 🌸 💕 🌹 🌷 🤍 🌸 💕 🌹 🌷 🤍 🌸 💕 🌹 🌷 🤍 🌸 💕 🌹 🌷 🤍 🌸 💕 🌹 🌷 🤍 🌸 💕 🌹';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 300%;
+            line-height: 60px;
+            word-spacing: 25px;
+            font-size: 18px;
+            animation: slideDown 30s infinite linear;
+            opacity: 0.6;
+        }
+        
+        @keyframes backgroundFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-15px) rotate(2deg); }
+            66% { transform: translateY(-10px) rotate(-2deg); }
+        }
+        
+        @keyframes slideDown {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        
+        /* Enhanced floating animations */
+        .floating-tulips, .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .tulip {
+            position: absolute;
+            font-size: 22px;
+            animation: float 10s infinite ease-in-out;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 8px rgba(255,105,180,0.3));
+        }
+        
+        @keyframes float {
+            0% { 
+                transform: translateY(100vh) rotate(0deg) scale(0.8); 
+                opacity: 0; 
+            }
+            15% { opacity: 0.8; }
+            85% { opacity: 0.8; }
+            100% { 
+                transform: translateY(-100px) rotate(360deg) scale(1.2); 
+                opacity: 0; 
+            }
+        }
+        
+        .heart {
+            position: absolute;
+            color: #ff69b4;
+            animation: heartFloat 8s infinite ease-in-out;
+            opacity: 0.7;
+            filter: drop-shadow(0 0 6px rgba(255,105,180,0.4));
+        }
+        
+        @keyframes heartFloat {
+            0% { 
+                transform: translateY(100vh) scale(0) rotate(0deg); 
+                opacity: 0; 
+            }
+            25% { opacity: 0.7; }
+            75% { opacity: 0.7; }
+            100% { 
+                transform: translateY(-100px) scale(1.5) rotate(180deg); 
+                opacity: 0; 
+            }
+        }
+        
+        /* Enhanced page styles */
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page.hidden {
+            display: none;
+        }
+        
+        /* Enhanced question page */
+        .question-container {
+            animation: fadeInUp 1.2s ease-out;
+            background: rgba(255,255,255,0.15);
+            border-radius: 30px;
+            padding: 40px 30px;
+            border: 1px solid rgba(255,182,193,0.3);
+            box-shadow: 0 15px 35px rgba(255,105,180,0.1);
+            position: relative;
+        }
+        
+        .main-question {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8em;
+            background: linear-gradient(45deg, #d63384, #ff1493, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            text-shadow: 0 4px 15px rgba(255,105,180,0.3);
+            animation: pulse 2.5s infinite ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.08); filter: brightness(1.1); }
+            100% { transform: scale(1); filter: brightness(1); }
+        }
+        
+        .cute-gif {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 25px 0;
+            border: 4px solid transparent;
+            background: linear-gradient(45deg, #ff69b4, #ff1493, #d63384) padding-box,
+                        linear-gradient(45deg, #ff69b4, #ff1493, #d63384) border-box;
+            animation: bounce 2.5s infinite ease-in-out;
+            box-shadow: 0 8px 25px rgba(255,105,180,0.4);
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.05); }
+        }
+        
+        .buttons-container {
+            display: flex;
+            gap: 25px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 18px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            min-width: 120px;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-yes {
+            background: linear-gradient(45deg, #ff69b4, #ff1493, #d63384);
+            color: white;
+            animation: wiggle 0.6s ease-in-out;
+            transform-origin: center;
+        }
+        
+        .btn-no {
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef, #dee2e6);
+            color: #6c757d;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+        }
+        
+        .btn-yes:hover {
+            box-shadow: 0 10px 30px rgba(255,105,180,0.5);
+            background: linear-gradient(45deg, #ff1493, #d63384, #ff69b4);
+        }
+        
+        .btn-no:hover {
+            box-shadow: 0 8px 25px rgba(108,117,125,0.3);
+            background: linear-gradient(45deg, #e9ecef, #dee2e6, #ced4da);
+        }
+        
+        @keyframes wiggle {
+            0% { transform: rotate(0deg) scale(1); }
+            15% { transform: rotate(-8deg) scale(1.05); }
+            30% { transform: rotate(8deg) scale(1.1); }
+            45% { transform: rotate(-6deg) scale(1.05); }
+            60% { transform: rotate(6deg) scale(1.08); }
+            75% { transform: rotate(-3deg) scale(1.03); }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        /* Enhanced gallery page */
+        .gallery-page {
+            padding: 20px;
+            min-height: auto;
+            justify-content: flex-start;
+        }
+        
+        .gallery-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2em;
+            background: linear-gradient(45deg, #d63384, #ff1493, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 60px 0 40px 0;
+            animation: fadeInDown 1.2s ease-out;
+            text-align: center;
+        }
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            width: 100%;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            margin-bottom: 120px;
+            padding: 0 5px;
+        }
+        
+        .media-item {
+            background: rgba(255,255,255,0.95);
+            border-radius: 18px;
+            padding: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,182,193,0.2);
+        }
+        
+        .media-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,105,180,0.1), rgba(255,20,147,0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 18px;
+        }
+        
+        .media-item:hover::before {
+            opacity: 1;
+        }
+        
+        .media-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(255,105,180,0.2);
+        }
+        
+        .media-item.enlarged {
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1) !important;
+            width: 95vw;
+            max-width: 90vh;
+            height: auto;
+            z-index: 1000;
+            animation: enlargeIn 0.3s ease-out;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+            padding: 0;
+            background: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @keyframes enlargeIn {
+            0% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+        
+        /* Numbered tile styles */
+        .number-tile {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, #ffeef0, #fff0f5, #ffe4e6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d63384;
+            font-size: 48px;
+            font-weight: 700;
+            border: 2px solid rgba(255,105,180,0.3);
+            transition: all 0.3s ease;
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .media-item:hover .number-tile {
+            background: linear-gradient(135deg, #ff69b4, #ff1493, #d63384);
+            color: white;
+            border-color: #ff1493;
+        }
+        
+        /* Hidden media content */
+        .media-content {
+            display: none;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+        
+        .media-content img,
+        .media-content video {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+        }
+        
+        /* Show media when enlarged */
+        .media-item.enlarged .number-tile {
+            display: none;
+        }
+        
+        .media-item.enlarged .media-content {
+            display: block;
+        }
+        
+        .media-item.enlarged .media-content img,
+        .media-item.enlarged .media-content video {
+            max-height: 80vh;
+            max-width: 95vw;
+            width: 100%;
+            height: auto;
+            margin: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.95);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            display: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            color: #666;
+        }
+        
+        .media-item.enlarged .close-btn {
+            display: block;
+        }
+        
+        .close-btn:hover {
+            background: white;
+            transform: scale(1.1);
+            color: #ff1493;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            background: rgba(255,255,255,0.95);
+            border: none;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            color: #666;
+        }
+        
+        .back-btn:hover {
+            background: white;
+            transform: scale(1.1);
+            color: #ff1493;
+        }
+        
+        /* Enhanced animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Enhanced audio control */
+        .audio-control {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 10;
+        }
+        
+        .audio-btn {
+            background: rgba(255,255,255,0.95);
+            border: none;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 22px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .audio-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .audio-btn.playing {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+        }
+        
+        /* Responsive improvements */
+        @media (max-width: 393px) {
+            .media-item.enlarged {
+                width: 95vw;
+            }
+            
+            .main-question {
+                font-size: 2.4em;
+            }
+            
+            .buttons-container {
+                gap: 15px;
+            }
+            
+            .btn {
+                padding: 15px 25px;
+                font-size: 16px;
+            }
+        }
+        
+        /* Add sparkle animation for celebration */
+        @keyframes sparkle {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1001;
+            animation: sparkle 1.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background tulip pattern -->
+    <div class="background-tulips"></div>
+    
+    <!-- Floating animations -->
+    <div class="floating-tulips"></div>
+    <div class="hearts"></div>
+    
+    <!-- Overlay for enlarged media -->
+    <div class="overlay" id="overlay" onclick="closeEnlargedMedia()"></div>
+    
+    <!-- Audio -->
+    <audio id="bgAudio" loop preload="auto">
+        <source src="Turning Page - Sleeping At Last - Violin cover by Daniel Jang.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Audio control -->
+    <div class="audio-control">
+        <button class="audio-btn" id="audioBtn" onclick="toggleAudio()">🎵</button>
+    </div>
+    
+    <!-- Question Page -->
+    <div class="page" id="questionPage">
+        <div class="question-container">
+            <h1 class="main-question" id="questionText">Will you be mine? 💕</h1>
+            
+            <img src="skeleton.png" 
+                 alt="Cute animated character" class="cute-gif">
+            
+            <div class="buttons-container">
+                <button class="btn btn-yes" id="yesBtn" onclick="handleYes()">Yes! 💖</button>
+                <button class="btn btn-no" id="noBtn" onclick="handleNo()">No 😢</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Gallery Page -->
+    <div class="page gallery-page hidden" id="galleryPage">
+        <button class="back-btn" onclick="goBack()">←</button>
+        
+        <h2 class="gallery-title">Some pictures and videos of my baby💕</h2>
+        
+        <div class="media-grid">
+            <div class="media-item" onclick="enlargeMedia(this)">
+                <button class="close-btn" onclick="closeEnlargedMedia(event)">×</button>
+                <div class="number-tile">1</div>
+                <div class="media-content">
+                    <img src="1.jpg" alt="Memory 1">
+                </div>
+            </div>
+            
+            <div class="media-item" onclick="enlargeMedia(this)">
+                <button class="close-btn" onclick="closeEnlargedMedia(event)">×</button>
+                <div class="number-tile">2</div>
+                <div class="media-content">
+                    <img src="2.jpg" alt="Memory 2">
+                </div>
+            </div>
+            
+            <div class="media-item" onclick="enlargeMedia(this)">
+                <button class="close-btn" onclick="closeEnlargedMedia(event)">×</button>
+                <div class="number-tile">3</div>
+                <div class="media-content">
+                    <img src="3.jpg" alt="Memory 3">
+                </div>
+            </div>
+            
+            <div class="media-item" onclick="enlargeMedia(this)">
+                <button class="close-btn" onclick="closeEnlargedMedia(event)">×</button>
+                <div class="number-tile">4</div>
+                <div class="media-content">
+                    <video src="4.mp4" controls></video>
+                </div>
+            </div>
+            
+            <div class="media-item" onclick="enlargeMedia(this)">
+                <button class="close-btn" onclick="closeEnlargedMedia(event)">×</button>
+                <div class="number-tile">5</div>
+                <div class="media-content">
+                    <video src="5.MOV" controls></video>
+                </div>
+            </div>
+            
+            <div class="media-item" onclick="enlargeMedia(this)">
+                <button class="close-btn" onclick="closeEnlargedMedia(event)">×</button>
+                <div class="number-tile">6</div>
+                <div class="media-content">
+                    <img src="6.jpg" alt="Memory 6">
+                </div>
+            </div>
+            
+            <div class="media-item" onclick="enlargeMedia(this)">
+                <button class="close-btn" onclick="closeEnlargedMedia(event)">×</button>
+                <div class="number-tile">7</div>
+                <div class="media-content">
+                    <img src="7.jpg" alt="Memory 7">
+                </div>
+            </div>
+            
+            <div class="media-item" onclick="enlargeMedia(this)">
+                <button class="close-btn" onclick="closeEnlargedMedia(event)">×</button>
+                <div class="number-tile">8</div>
+                <div class="media-content">
+                    <img src="8.jpg" alt="Memory 8">
+                </div>
+            </div>
+            
+            <div class="media-item" onclick="enlargeMedia(this)">
+                <button class="close-btn" onclick="closeEnlargedMedia(event)">×</button>
+                <div class="number-tile">9</div>
+                <div class="media-content">
+                    <img src="9.jpg" alt="Memory 9">
+                </div>
+            </div>
+            
+            <div class="media-item" onclick="enlargeMedia(this)">
+                <button class="close-btn" onclick="closeEnlargedMedia(event)">×</button>
+                <div class="number-tile">10</div>
+                <div class="media-content">
+                    <video src="10.mp4" controls></video>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let noClickCount = 0;
+        let isAudioPlaying = false;
+        let currentEnlargedMedia = null;
+        let originalQuestionText = "Will you be mine? 💕";
+        let messageTimeout = null;
+        
+        // Initialize floating animations with better performance
+        function createFloatingTulips() {
+            const container = document.querySelector('.floating-tulips');
+            const tulipEmojis = ['🌷', '🤍', '🌸', '💕', '🌹'];
+            
+            const createTulip = () => {
+                if (container.children.length > 10) return; // Limit for performance
+                
+                const tulip = document.createElement('div');
+                tulip.className = 'tulip';
+                tulip.textContent = tulipEmojis[Math.floor(Math.random() * tulipEmojis.length)];
+                tulip.style.left = Math.random() * 100 + '%';
+                tulip.style.animationDelay = Math.random() * 3 + 's';
+                tulip.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                container.appendChild(tulip);
+                
+                setTimeout(() => {
+                    if (container.contains(tulip)) {
+                        container.removeChild(tulip);
+                    }
+                }, 10000);
+            };
+            
+            setInterval(createTulip, 2500);
+        }
+        
+        function createFloatingHearts() {
+            const container = document.querySelector('.hearts');
+            const heartEmojis = ['💕', '💖', '💗', '💘', '💝', '💞'];
+            
+            const createHeart = () => {
+                if (container.children.length > 8) return; // Limit for performance
+                
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 3 + 's';
+                heart.style.fontSize = (Math.random() * 12 + 16) + 'px';
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    if (container.contains(heart)) {
+                        container.removeChild(heart);
+                    }
+                }, 8000);
+            };
+            
+            setInterval(createHeart, 2000);
+        }
+        
+        function handleYes() {
+            // Enhanced celebration effect
+            createCelebrationEffects();
+            
+            setTimeout(() => {
+                document.getElementById('questionPage').classList.add('hidden');
+                document.getElementById('galleryPage').classList.remove('hidden');
+            }, 1500);
+        }
+        
+        function handleNo() {
+            noClickCount++;
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            const questionText = document.getElementById('questionText');
+            
+            // Clear any existing timeout
+            if (messageTimeout) {
+                clearTimeout(messageTimeout);
+            }
+            
+            // Make yes button bigger and more appealing
+            const newSize = 1 + (noClickCount * 0.15);
+            yesBtn.style.transform = `scale(${Math.min(newSize, 2)})`;
+            yesBtn.style.animation = 'wiggle 0.6s ease-in-out';
+            
+            // Make no button smaller with proper bounds checking
+            const minSize = 0.3;
+            const noSize = Math.max(minSize, 1 - (noClickCount * 0.08));
+            noBtn.style.transform = `scale(${noSize})`;
+            
+            // Playful messages
+            const messages = [
+                "Are you sure? 🥺",
+                "Please reconsider! 💕",
+                "Come on, you know you want to! 😉",
+                "The yes button is looking pretty good now! 😍",
+                "I promise I'm worth it! 💖",
+                "Pretty please with a cherry on top? 🍒",
+                "You're making this harder than it needs to be! 😄"
+            ];
+            
+            if (noClickCount <= messages.length) {
+                questionText.textContent = messages[Math.min(noClickCount - 1, messages.length - 1)];
+                
+                messageTimeout = setTimeout(() => {
+                    questionText.textContent = originalQuestionText;
+                }, 2500);
+            }
+            
+            // Enhanced "make it harder" logic with proper bounds
+            if (noClickCount >= 3) {
+                const container = document.querySelector('.question-container');
+                const containerRect = container.getBoundingClientRect();
+                const btnRect = noBtn.getBoundingClientRect();
+                
+                const maxLeft = Math.max(0, containerRect.width - btnRect.width - 40);
+                const maxTop = Math.max(0, containerRect.height - btnRect.height - 40);
+                
+                noBtn.style.position = 'absolute';
+                noBtn.style.left = Math.random() * maxLeft + 20 + 'px';
+                noBtn.style.top = Math.random() * maxTop + 20 + 'px';
+                
+                // Add some fun rotation
+                noBtn.style.transform += ` rotate(${Math.random() * 360}deg)`;
+            }
+            
+            // Add shake effect to no button
+            noBtn.style.animation = 'shake 0.5s ease-in-out';
+        }
+        
+        function enlargeMedia(element) {
+            if (currentEnlargedMedia) return; // Prevent multiple enlargements
+            
+            currentEnlargedMedia = element;
+            element.classList.add('enlarged');
+            document.getElementById('overlay').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            
+            // Auto-play videos when enlarged
+            const video = element.querySelector('video');
+            if (video) {
+                video.play();
+            }
+        }
+        
+        function closeEnlargedMedia(event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            
+            if (currentEnlargedMedia) {
+                // Pause any playing videos
+                const video = currentEnlargedMedia.querySelector('video');
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+                
+                currentEnlargedMedia.classList.remove('enlarged');
+                currentEnlargedMedia = null;
+                document.getElementById('overlay').classList.remove('active');
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }
+        }
+        
+        function createCelebrationEffects() {
+            // Create multiple celebration hearts
+            for(let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    createCelebrationHeart();
+                }, i * 80);
+            }
+            
+            // Create sparkles
+            for(let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    createSparkle();
+                }, i * 120);
+            }
+        }
+        
+        function createCelebrationHeart() {
+            const heart = document.createElement('div');
+            const heartEmojis = ['💖', '💕', '💗', '💘', '💝', '💞', '🥰', '😍'];
+            heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = Math.random() * 50 + 25 + '%';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '1000';
+            heart.style.animation = 'heartFloat 3s ease-out forwards';
+            heart.style.filter = 'drop-shadow(0 0 10px rgba(255,105,180,0.8))';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                if (document.body.contains(heart)) {
+                    document.body.removeChild(heart);
+                }
+            }, 3000);
+        }
+        
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.textContent = '✨';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            sparkle.style.color = ['#FFD700', '#FF69B4', '#FF1493', '#DDA0DD'][Math.floor(Math.random() * 4)];
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                if (document.body.contains(sparkle)) {
+                    document.body.removeChild(sparkle);
+                }
+            }, 1500);
+        }
+        
+        function goBack() {
+            closeEnlargedMedia(); // Close any enlarged media first
+            document.getElementById('galleryPage').classList.add('hidden');
+            document.getElementById('questionPage').classList.remove('hidden');
+            
+            // Reset the no button position and scale when going back
+            const noBtn = document.getElementById('noBtn');
+            noBtn.style.position = 'relative';
+            noBtn.style.left = 'auto';
+            noBtn.style.top = 'auto';
+            noBtn.style.transform = 'scale(1)';
+            
+            // Reset question text
+            const questionText = document.getElementById('questionText');
+            questionText.textContent = originalQuestionText;
+            
+            // Reset counters
+            noClickCount = 0;
+            if (messageTimeout) {
+                clearTimeout(messageTimeout);
+            }
+        }
+        
+        function toggleAudio() {
+            const audio = document.getElementById('bgAudio');
+            const btn = document.getElementById('audioBtn');
+            
+            if (isAudioPlaying) {
+                audio.pause();
+                btn.textContent = '🎵';
+                btn.classList.remove('playing');
+                isAudioPlaying = false;
+            } else {
+                audio.play().catch(e => {
+                    console.log('Audio play failed:', e);
+                });
+                btn.textContent = '🔇';
+                btn.classList.add('playing');
+                isAudioPlaying = true;
+            }
+        }
+
+        // Initialize audio on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('bgAudio');
+            if (audio) {
+                audio.volume = 0.3;
+            }
+        });
+        
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingTulips();
+            createFloatingHearts();
+        });
+        
+        // Auto-play audio when user first interacts (modern browsers require user interaction)
+        document.addEventListener('click', function() {
+            const audio = document.getElementById('bgAudio');
+            const audioBtn = document.getElementById('audioBtn');
+            
+            if (!isAudioPlaying) {
+                audio.play().catch(e => {
+                    console.log('Audio autoplay failed:', e);
+                });
+                audioBtn.textContent = '🎵';
+                audioBtn.classList.add('playing');
+                isAudioPlaying = true;
+            }
+        }, { once: true });
+        
+        // Close enlarged media with escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeEnlargedMedia();
+            }
+        });
+        
+        // Prevent right-click context menu on images (optional)
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+        
+        // Add smooth scroll behavior
+        document.documentElement.style.scrollBehavior = 'smooth';
+        
+        // Performance optimization: Clean up animations when page is hidden
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                // Pause audio when page is hidden
+                if (isAudioPlaying) {
+                    document.getElementById('bgAudio').pause();
+                }
+            } else {
+                // Resume audio when page is visible again
+                if (isAudioPlaying) {
+                    document.getElementById('bgAudio').play().catch(e => {
+                        console.log('Audio resume failed:', e);
+                    });
+                }
+            }
+        });
+        
+        // Add touch event handlers for better mobile experience
+        let touchStartY = 0;
+        
+        document.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+        
+        document.addEventListener('touchmove', function(e) {
+            // Prevent bounce effect on iOS
+            const touchY = e.touches[0].clientY;
+            const touchDiff = touchY - touchStartY;
+            
+            if (currentEnlargedMedia) {
+                e.preventDefault(); // Prevent scrolling when media is enlarged
+            }
+        }, { passive: false });
+        
+        // Preload audio for better performance
+        window.addEventListener('load', function() {
+            const audio = document.getElementById('bgAudio');
+            audio.load();
+        });
+    </script>
+</body>
+</html>
